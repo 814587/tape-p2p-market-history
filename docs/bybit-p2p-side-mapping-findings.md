@@ -87,8 +87,8 @@ The reason for the discrepancy has not been established.
 
 Based on the live API tests and comparisons with the public Bybit P2P interface, the observed mapping is:
 
-* side=0 — Buy USDT
-* side=1 — Sell USDT
+* side=1 — Buy USDT
+* side=0 — Sell USDT
 
 These findings are based on observed endpoint behaviour, not assumptions about parameter naming.
 
