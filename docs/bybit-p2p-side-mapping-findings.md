@@ -31,25 +31,24 @@ The investigation involved:
 
 This allowed the side mapping to be tested against actual displayed market advertisements.
 
-4. Evidence A — Buy-side Verification
+4. 4. Evidence A — Buy-side Verification
 
 API results from the tested side were compared against the public Bybit P2P Buy USDT interface.
 
 Two advertisements were identified through exact merchant-name and price matches.
 
-Reference	API price	UI price	Result
-Match A	₦1,382.99	₦1,382.99	Exact match
-Match B	₦1,383.00	₦1,383.00	Exact match
+API merchant	API rate (₦)	UI merchant	UI rate (₦)	Result
+Merchant A	1,382.99	Merchant A	1,382.99	Exact match
+Merchant B	1,383.00	Merchant B	1,383.00	Exact match
 
-The merchant identities have been anonymized in the published evidence image.
+Why this matters
 
-Why this matters:
-
-Matching both the merchant names and their individual prices provides stronger verification than comparing general market prices alone.
+Matching both merchant names and their individual prices provides stronger verification than comparing general market prices alone.
 
 It establishes that the advertisements returned by the tested API side were also present on the public Buy USDT interface.
 
-Evidence image: evidence/bybit-buy-side-verification.png
+Screenshot Evidence
+
 
 5. Evidence B — Sell-side Verification
 
