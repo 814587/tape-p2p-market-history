@@ -1,50 +1,98 @@
-Bybit P2P Side Mapping: A Live Testing Finding
+Bybit P2P API — Side Parameter Verification
 
-Background
+1. Overview
 
-Bybit’s published P2P API documentation describes the meaning of its Buy and Sell side parameters.
+This document records findings from live testing of Bybit’s P2P advertisement system.
 
-However, live testing and comparison with the public Bybit P2P interface revealed a discrepancy between the documented mapping and the actual observed behaviour.
+The purpose of this investigation was to establish the actual meaning of the API’s side parameter by comparing returned advertisement information against the public Bybit P2P interface.
 
-Observed Side Mapping
+The investigation identified a discrepancy between the side mapping presented in the API documentation and the behaviour observed during testing.
 
-The following mapping was verified through live testing:
+2. Verified Side Mapping
 
-Side value	Actual P2P direction
-0	Buy USDT
-1	Sell USDT
+API parameter	P2P direction
+side=0	Buy USDT
+side=1	Sell USDT
 
-These values correspond to the Buy and Sell directions displayed in Bybit’s P2P interface.
+The observed API side values correspond directly to the Buy and Sell directions displayed in the Bybit P2P interface.
 
-Evidence
+3. Why This Mapping Was Established
 
-Buy-side verification
+The mapping was not determined by assumption or interpretation of the parameter names.
 
-Two advertisements returned during testing were identified on the public Bybit P2P interface using matching merchant names and prices.
+It was established through live API requests and independent comparison with the public P2P interface.
 
-The published evidence image conceals merchant identities while preserving the matching prices and relevant interface details.
+The investigation involved:
 
-Sell-side verification
+1. Querying the API using the different side values.
+2. Examining the advertisement records returned by each request.
+3. Comparing the returned information against advertisements displayed on the corresponding Bybit P2P interface.
+4. Checking whether individual advertisement details could be identified in both sources.
 
-A separate comparison was conducted for the other side.
+This allowed the side mapping to be tested against actual displayed market advertisements.
 
-The API prices were observed and compared with prices displayed on the public P2P interface. This was a price-level observation rather than an exact merchant-identity match.
+4. Evidence A — Buy-side Verification
 
-Documentation discrepancy
+API results from the tested side were compared against the public Bybit P2P Buy USDT interface.
 
-The observed live behaviour does not agree with the side mapping presented in Bybit’s published API documentation.
+Two advertisements were identified through exact merchant-name and price matches.
 
-Developers relying exclusively on that documented mapping may interpret the returned P2P advertisements incorrectly.
+Reference	API price	UI price	Result
+Match A	₦1,382.99	₦1,382.99	Exact match
+Match B	₦1,383.00	₦1,383.00	Exact match
 
-The documentation should be reviewed and corrected to reflect the observed behaviour.
+The merchant identities have been anonymized in the published evidence image.
 
-Conclusion
+Why this matters:
 
-Live testing supports this mapping:
+Matching both the merchant names and their individual prices provides stronger verification than comparing general market prices alone.
 
-* 0 = Buy USDT
-* 1 = Sell USDT
+It establishes that the advertisements returned by the tested API side were also present on the public Buy USDT interface.
 
-This finding is published to help developers understand the actual behaviour of Bybit’s P2P interface and avoid incorrect interpretations when working with P2P market data.
+Evidence image: evidence/bybit-buy-side-verification.png
 
-Note: This is an independently conducted technical observation. It does not establish why the documentation discrepancy exists.
+5. Evidence B — Sell-side Verification
+
+A separate test was conducted using the other API side.
+
+The returned advertisement prices were compared against prices displayed on the public Bybit P2P Sell USDT interface.
+
+This comparison produced matching price observations.
+
+However, exact merchant-name matching was not established for this test.
+
+Evidence limitation:
+
+This is documented as a price-level observation rather than an exact advertisement identity verification.
+
+Evidence image: evidence/bybit-sell-side-price-observation.png
+
+6. Documentation Discrepancy
+
+The mapping observed during live testing does not agree with the mapping presented in Bybit’s published API documentation.
+
+This creates a potential problem for developers who rely exclusively on the published parameter descriptions.
+
+An incorrectly interpreted side parameter can cause developers to:
+
+* Retrieve the wrong P2P direction.
+* Mislabel Buy and Sell advertisements.
+* Interpret market prices incorrectly.
+* Build applications that display the opposite market direction from what they intended.
+
+The discrepancy deserves clarification in Bybit’s developer documentation.
+
+The reason for the discrepancy has not been established.
+
+7. Conclusion
+
+Based on the live API tests and comparisons with the public Bybit P2P interface, the observed mapping is:
+
+* side=0 — Buy USDT
+* side=1 — Sell USDT
+
+These findings are based on observed endpoint behaviour, not assumptions about parameter naming.
+
+This documentation is published to help developers understand the tested behaviour and avoid incorrect interpretation of Bybit P2P market data.
+
+Verification note: These findings represent observations made during testing on 9 November 2026. API behaviour and documentation may change, so independent revalidation is recommended.
